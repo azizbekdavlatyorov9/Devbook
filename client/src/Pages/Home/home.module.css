@@ -1,0 +1,152 @@
+.home {
+  width: 100%;
+  padding: 35px 60px;
+}
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+
+    background-image:url("./pictures/black-floral-texture-pattern-design-wallpaper-background.jpeg");
+
+    background-repeat:no-repeat;
+    background-position:right bottom;
+
+    opacity:.08;
+
+    pointer-events:none;
+}
+
+/* ================= Banner ================= */
+
+.banner {
+  width: 100%;
+  height: 310px;
+  border-radius: 18px;
+  overflow: hidden;
+  position: relative;
+}
+
+.banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ================= Search ================= */
+
+.searchBox {
+  width: 84%;
+  margin: -40px auto 0;
+  background: #1c1c1c;
+  border-radius: 18px;
+  padding: 24px 35px;
+  position: relative;
+  z-index: 10;
+
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .45);
+}
+
+.searchBox h2 {
+  text-align: center;
+  color: #d6b184;
+  font-size: 34px;
+  font-weight: 400;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+  font-family: "Georgia", serif;
+}
+
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.search input {
+  width: 78%;
+  height: 48px;
+
+  border: none;
+  outline: none;
+
+  border-radius: 10px;
+
+  background: #3a3a3a;
+  color: white;
+
+  padding: 0 20px;
+  font-size: 15px;
+}
+
+.search input::placeholder {
+  color: #909090;
+}
+
+.search button {
+  width: 120px;
+  height: 48px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #d6b184;
+  color: #222;
+
+  font-size: 15px;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  transition: .3s;
+}
+
+.search button:hover {
+  background: #c59e6a;
+}
+
+/* ================= Category ================= */
+
+.category {
+  margin-top: 45px;
+}
+
+.category h2 {
+  text-align: center;
+  color: #d6b184;
+  font-size: 34px;
+  font-weight: 400;
+  margin-bottom: 25px;
+  font-family: "Georgia", serif;
+}
+
+.categoryList {
+  display: flex;
+  justify-content: center;
+  gap: 45px;
+  flex-wrap: wrap;
+}
+
+.categoryList button {
+  background: transparent;
+  border: none;
+  color: #b8b8b8;
+  cursor: pointer;
+
+  font-size: 17px;
+
+  transition: .3s;
+}
+
+.categoryList button:hover {
+  color: #d6b184;
+}
+
+.categoryList button.active {
+  color: #d6b184;
+}

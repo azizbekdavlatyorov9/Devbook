@@ -1,0 +1,22 @@
+@import "tailwindcss";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+}
+ul,
+ol {
+  list-style-type: none;
+}
+@theme {
+  --color-midnight: #c9ac8c;
+  --font-rotterburg: "Rotterburg";
+}
+@font-face {
+  font-family: "Rotterburg";
+  src: url("./fonts/Rotterburg\ Display\ Font.otf");
+}
+

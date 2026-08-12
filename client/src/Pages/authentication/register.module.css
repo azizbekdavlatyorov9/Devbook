@@ -1,0 +1,173 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  background: #2C3E50;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.registerBox {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+
+  display: flex;
+  overflow: hidden;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* LEFT */
+
+.left {
+  flex: 1;
+  background: #d1b18c;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 40px;
+}
+
+.left img {
+  width: 90%;
+  max-width: 500px;
+  object-fit: contain;
+}
+
+/* RIGHT */
+
+.right {
+  flex: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 60px;
+}
+
+.form {
+  width: 100%;
+  max-width: 420px;
+}
+
+.form h1 {
+  font-size: 54px;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 15px;
+}
+
+.loginText {
+  color: #666;
+  font-size: 15px;
+  margin-bottom: 35px;
+}
+
+.loginText a {
+  text-decoration: none;
+  color: #5f86ff;
+  font-weight: 500;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.input {
+  width: 100%;
+  height: 58px;
+
+  border: 1px solid #d8d8d8;
+  border-radius: 12px;
+
+  padding: 0 22px;
+
+  font-size: 16px;
+
+  outline: none;
+
+  transition: 0.3s;
+}
+
+.input:focus {
+  border-color: #1d2b4f;
+}
+
+.button {
+  width: 100%;
+  height: 60px;
+
+  margin-top: 28px;
+
+  border: none;
+  border-radius: 40px;
+
+  background: #1d2b4f;
+  color: white;
+
+  font-size: 24px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: .3s;
+}
+
+.button:hover {
+  background: #15203c;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 992px) {
+
+  .registerBox {
+    width: 95%;
+    height: auto;
+    flex-direction: column;
+  }
+
+  .left {
+    height: 350px;
+  }
+
+  .right {
+    padding: 40px 25px;
+  }
+
+  .form h1 {
+    font-size: 42px;
+  }
+}
+
+@media (max-width: 576px) {
+
+  .left {
+    display: none;
+  }
+
+  .right {
+    padding: 30px 20px;
+  }
+
+  .form h1 {
+    font-size: 34px;
+  }
+
+  .button {
+    font-size: 20px;
+  }
+}
