@@ -3,30 +3,28 @@ import {
   IsNotEmpty,
   IsNumber,
   IsString,
+  IsUUID,
   Max,
   MaxLength,
   Min,
   MinLength,
-} from 'class-validator';
-
-import { Type } from 'class-transformer';
-import { AuthorPeriod } from '../../authors/entities/author.entity';
-import { BookGenre } from '../entities/book.entity';
+} from "class-validator";
+import { Type } from "class-transformer";
+import { AuthorPeriod } from "../../authors/entities/author.entity";
+import { BookGenre } from "../entities/book.entity";
 
 
 export class CreateBookDto {
   @IsString()
   @IsNotEmpty()
   @MinLength(3, {
-    message:
-      "Kitob nomi kamida 3 ta belgidan iborat bo'lishi kerak",
+    message: "Kitob nomi kamida 3 ta belgidan iborat bo'lishi kerak",
   })
   @MaxLength(150)
   title!: string;
 
   @IsEnum(AuthorPeriod, {
-    message:
-      'Bunday davr qiymati mavjud emas',
+    message: "Bunday davr qiymati mavjud emas",
   })
   period!: AuthorPeriod;
 
@@ -47,8 +45,7 @@ export class CreateBookDto {
   publisher!: string;
 
   @IsEnum(BookGenre, {
-    message:
-      'Bunday janr qiymati mavjud emas',
+    message: "Bunday janr qiymati mavjud emas",
   })
   genres!: BookGenre;
 
@@ -56,8 +53,6 @@ export class CreateBookDto {
   @IsNotEmpty()
   details!: string;
 
-  @Type(() => Number)
-  @IsNumber()
-  @IsNotEmpty()
-  author_info!: number;
+  @IsUUID()
+  author_id!: string;
 }

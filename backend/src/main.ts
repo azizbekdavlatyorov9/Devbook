@@ -4,8 +4,8 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import cookieParser = require('cookie-parser');
-
 import { AppModule } from './app.module';
+
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -13,9 +13,9 @@ async function bootstrap() {
   app.enableCors({
     origin: process.env.CLIENT_ORIGIN ?? 'http://localhost:5173',
     credentials: true,
-  });
+  }); 
 
-  app.use(cookieParser());
+  app.use(cookieParser()); 
 
   app.useGlobalPipes(
     new ValidationPipe({

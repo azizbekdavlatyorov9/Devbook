@@ -1,5 +1,5 @@
 import { Module } from "@nestjs/common";
-import { ConfigModule } from "@nestjs/config";
+import { ConfigModule, ConfigService } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 
 import { AuthModule } from "./auth/auth.module";
@@ -9,37 +9,50 @@ import { CitationsModule } from "./citations/citations.module";
 import { LikesModule } from "./likes/likes.module";
 
 import { User } from "./auth/entities/user.entity";
-import { Author } from "./authors/entities/author.entity";
 import { Book } from "./books/entities/book.entity";
+import { Author } from "./authors/entities/author.entity";
 import { Citation } from "./citations/entities/citation.entity";
 import { Like } from "./likes/entities/like.entity";
 
 @Module({
   imports: [
+    // .env fayldagi o'zgaruvchilarni yuklash
     ConfigModule.forRoot({
       isGlobal: true,
     }),
 
-    TypeOrmModule.forRoot({
-      type: "postgres",
+    // PostgreSQL ulanishi
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
 
-      host: process.env.DB_HOST,
-      port: Number(process.env.DB_PORT),
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_DATABASE,
+      inject: [ConfigService],
 
-      entities: [
-        User,
-        Author,
-        Book,
-        Citation,
-        Like,
-      ],
+      useFactory: (configService: ConfigService) => ({
+        type: "postgres",
 
-      synchronize: true,
+        host: configService.get<string>("DB_HOST"),
+
+        port: configService.get<number>("DB_PORT"),
+
+        username: configService.get<string>("DB_USERNAME"),
+
+        password: configService.get<string>("DB_PASSWORD"),
+
+        database: configService.get<string>("DB_DATABASE"),
+
+        entities: [
+          User,
+          Author,
+          Book,
+          Citation,
+          Like,
+        ],
+
+        synchronize: true,
+      }),
     }),
 
+    // Application modules
     AuthModule,
     AuthorsModule,
     BooksModule,
