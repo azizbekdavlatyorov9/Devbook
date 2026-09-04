@@ -1,0 +1,128 @@
+.page {
+  max-width: 1200px;
+  min-height: 720px;
+  margin: 0 auto;
+  padding: 35px 34px 60px;
+  background: #171816;
+  color: #e6ddd0;
+  position: relative;
+}
+.page::after {
+  content: "";
+  position: absolute;
+  width: 450px;
+  height: 450px;
+  right: -220px;
+  bottom: -200px;
+  border: 1px solid #8e7050;
+  border-radius: 50%;
+  opacity: 0.12;
+  box-shadow:
+    0 0 0 48px #8e705022,
+    0 0 0 96px #8e705016;
+}
+.header {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-bottom: 28px;
+}
+.header h1 {
+  color: #c6a37a;
+  font-family: "Rotterburg", Georgia, serif;
+  font-weight: 400;
+  font-size: 34px;
+  margin-bottom: 14px;
+}
+.search {
+  width: min(500px, 100%);
+  height: 42px;
+  padding: 0 15px;
+  border: 0;
+  border-radius: 7px;
+  background: #43423f;
+  color: #eee;
+  outline: 0;
+  font-size: 14px;
+}
+.notice {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 18px;
+  background: #2a2925;
+  border-radius: 7px;
+  color: #cbb99e;
+}
+.grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+}
+.card {
+  min-width: 0;
+}
+.image {
+  width: 100%;
+  aspect-ratio: 0.77;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(1);
+  border-radius: 4px;
+}
+.content {
+  padding-top: 8px;
+}
+.content h2 {
+  color: #d8c6b1;
+  font-family: "Rotterburg", Georgia, serif;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.1;
+}
+.content p {
+  margin-top: 4px;
+  color: #aaa096;
+  line-height: 1.35;
+  font-size: 12px;
+}
+.tag {
+  display: inline-block;
+  margin-top: 7px;
+  color: #d1ae7d;
+  font-size: 11px;
+}
+.card:not(:has(.image)) {
+  border-radius: 3px;
+  overflow: hidden;
+  background: linear-gradient(145deg, #c3994b, #37566a 50%, #20242a);
+  box-shadow: 0 5px 12px #0007;
+}
+.card:not(:has(.image)) .content {
+  padding: 12px 9px 10px;
+  min-height: 166px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  background: linear-gradient(transparent, #151515aa);
+}
+.card:nth-child(2n):not(:has(.image)) {
+  background: linear-gradient(145deg, #809447, #d3bf55 50%, #20211d);
+}
+.card:nth-child(3n):not(:has(.image)) {
+  background: linear-gradient(145deg, #c95748, #e9c084 50%, #343a52);
+}
+@media (max-width: 800px) {
+  .page {
+    padding: 25px 16px 45px;
+  }
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 13px;
+  }
+  .header h1 {
+    font-size: 24px;
+  }
+}

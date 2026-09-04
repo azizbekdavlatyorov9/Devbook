@@ -1,20 +1,24 @@
 import React from "react";
 import style from './navbar.module.css'
-// import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from '../auth/AuthContext';
 
 
 
 const Navbar = () => {
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+  const signOut = async () => { await logout(); navigate('/login'); };
   return (
     <>
     <div className={style.navbar_container}> 
     <h1 className={style.navbar_logo}>BADIIYAT</h1> 
     <div className={style.navbar_links}>
-      <a href="/#" style={{textDecoration: 'none',}}>Bosh Sahifa</a>
-      <a href="/about" style={{textDecoration: 'none',}}>Nasr</a>
-      <a href="/projects" style={{textDecoration: 'none', }}>Nazm</a>
-      <a href="/contact" style={{textDecoration: 'none', }}>Maqolalar</a>
-      <a href="/login" className={style.login} style={{textDecoration: 'none',}}>Forum</a>
+      <Link to="/">Bosh sahifa</Link>
+      <Link to="/books">Kitoblar</Link>
+      <Link to="/authors">Adiblar</Link>
+      {user?.role === "admin" && <Link to="/add-book">Qo‘shish</Link>}
+      {user ? <button className={style.login} onClick={signOut}>Chiqish</button> : <Link to="/login" className={style.login}>Kirish</Link>}
     </div>
     </div>
     </>

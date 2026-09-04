@@ -1,22 +1,7 @@
 @import "tailwindcss";
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-a {
-  text-decoration: none;
-}
-ul,
-ol {
-  list-style-type: none;
-}
-@theme {
-  --color-midnight: #c9ac8c;
-  --font-rotterburg: "Rotterburg";
-}
-@font-face {
-  font-family: "Rotterburg";
-  src: url("./fonts/Rotterburg\ Display\ Font.otf");
-}
-
+@font-face { font-family: "Rotterburg"; src: url("./fonts/Rotterburg Display Font.otf"); }
+:root { font-family: Inter, Arial, sans-serif; color: #e9e3da; background: #e8e8e8; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { min-width: 320px; background: #e8e8e8; }
+a { color: inherit; text-decoration: none; }
+button, input { font: inherit; }

@@ -1,9 +1,14 @@
-import React from 'react'
-
-const Addauthor = () => {
-  return (
-    <div></div>
-  )
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { api } from '../../api';
+import { useAuth } from '../../auth/AuthContext';
+import styles from '../forms.module.css';
+const periods = ['Temuriylar davri', 'Jadid davri', 'Sovet davri', 'Mustaqillik davri'];
+export default function AddAuthor() {
+  const { user, loading } = useAuth(); const navigate = useNavigate(); const [form, setForm] = useState({ full_name:'', birth_year:'', death_year:'', bio:'', period:periods[0], work:'', region:'' }); const [image, setImage] = useState(null); const [error, setError] = useState(''); const [success, setSuccess] = useState(''); const [saving, setSaving] = useState(false);
+  useEffect(() => { if (!loading && user?.role !== 'admin') navigate('/authors'); }, [user, loading, navigate]);
+  const submit = async (event) => { event.preventDefault(); if (!image) return setError('Muallif rasmi tanlanishi kerak.'); try { setSaving(true); setError(''); const data = new FormData(); Object.entries(form).forEach(([key,value]) => data.append(key, value)); data.append('upload_image', image); await api('/add_author', { method:'POST', body:data }); setSuccess('Adib muvaffaqiyatli qo‘shildi.'); setTimeout(() => navigate('/authors'), 900); } catch (err) { setError(err.message); } finally { setSaving(false); } };
+  if (loading || user?.role !== 'admin') return null;
+  const field = (label, name, type = 'text') => <div className={styles.field}><label>{label}</label><input required type={type} name={name} value={form[name]} onChange={(event) => setForm({...form,[name]:event.target.value})}/></div>;
+  return <section className={styles.page}><div className={styles.wrap}><h1 className={styles.title}>Adib qo‘shish</h1><p className={styles.subtitle}>Yangi adib ma’lumotlari va rasmini kiriting.</p><div className={styles.tabs}><Link className={styles.tab} to="/add-book">Kitob qo‘shish</Link></div><form className={styles.form} onSubmit={submit}>{field('To‘liq ism','full_name')}{field('Hudud','region')}{field('Tug‘ilgan yil','birth_year','number')}{field('Vafot etgan yil','death_year','number')}<div className={styles.field}><label>Davr</label><select name="period" value={form.period} onChange={(event) => setForm({...form,period:event.target.value})}>{periods.map((period) => <option key={period}>{period}</option>)}</select></div>{field('Mashhur asari','work')}<div className={`${styles.field} ${styles.full}`}><label>Rasm (PNG, JPG yoki WEBP)</label><input type="file" accept="image/png,image/jpeg,image/webp" onChange={(event) => setImage(event.target.files?.[0] ?? null)} />{image && <img className={styles.preview} src={URL.createObjectURL(image)} alt="Tanlangan rasm" />}</div><div className={`${styles.field} ${styles.full}`}><label>Biografiya</label><textarea name="bio" value={form.bio} onChange={(event) => setForm({...form,bio:event.target.value})} required /></div>{error && <p className={styles.error}>{error}</p>}{success && <p className={styles.success}>{success}</p>}<button className={styles.button} disabled={saving}>{saving ? 'Saqlanmoqda...' : 'Adibni qo‘shish'}</button></form></div></section>;
 }
-
-export default Addauthor
