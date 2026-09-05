@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./Layout/Layout";
 
-import Login from "./Pages/authentication/login";
+import Login from "./Pages/authentication/Login";
 import Register from "./Pages/authentication/register";
 import VerifyCode from "./Pages/authentication/VerifyCode";
 
